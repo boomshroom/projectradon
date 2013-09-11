@@ -26,7 +26,8 @@ public class Entity {
     Random rand = new Random();
     public float restitution = 0.8F;
     public boolean onGround;
-    /** 0 = not on wall, 1 = left wall, 2 = right wall */
+    /** 00000brl, b=on bounds, r = right wall, l left wall
+     0 (000) = not on wall, 1 (001) = left wall, 2 (010) = right wall, 5 (101) = left boundary, 7 (110) = right boundary */
     public byte onWall;
     
     public Entity(float x, float y) {

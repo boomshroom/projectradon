@@ -94,16 +94,16 @@ public class Collision {
         if (e.x - e.width / 2 < 0) {
             e.x = e.width / 2;
             e.velocity.x = -e.velocity.x * e.restitution / 2;
-            e.onWall = 1;
+            e.onWall = 5;
         } else if (e.x - e.width / 2 == 0) {
-            e.onWall = 1;
+            e.onWall = 5;
         } else
         if (e.x + e.width / 2 > Game.width) {
             e.x = Game.width - e.width / 2;
             e.velocity.x = -e.velocity.x * e.restitution / 2;
-            e.onWall = 2;
+            e.onWall = 7;
         } else if (e.x + e.width / 2 == Game.width) {
-            e.onWall = 2;
+            e.onWall = 7;
         } else {
             e.onWall = 0;
         }
