@@ -29,7 +29,9 @@ public class World extends BasicGameState {
         accumulator += delta;
         
         while (accumulator >= timesetp) {
-            tick(container, game, delta);
+            if (container.hasFocus()) {
+                tick(container, game, delta);
+            }
             accumulator -= timesetp;
         }
         
@@ -62,14 +64,30 @@ public class World extends BasicGameState {
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         Player p = new Player(100, 100);
         add(p);
-        
-        for (int i = 0; i < 100; i++) {
-            Entity e = new Entity(rand.nextFloat() * Game.width, rand.nextFloat() * Game.height);
-            e.width = rand.nextFloat() * 50;
-            e.height = rand.nextFloat() * 50;
+        int R = 42;
+        int G = 47;
+        int B = 159;
+        boolean controllable = false;
+        for (int i = 0; i < 75; i++) {
+            
+            boolean physics = false;
+            GenericCuboid e = new GenericCuboid(rand.nextFloat() * Game.width, rand.nextFloat() * Game.height, R, G, B,
+                    rand.nextFloat() * 50 + 5, rand.nextFloat() * 50 + 5, physics, controllable);
+            
             e.invMass = 0;
             add(e);
         }
+        
+        for (int i = 0; i < 25; i++) {
+            
+            boolean physics = true;
+            GenericCuboid e = new GenericCuboid(rand.nextFloat() * Game.width, rand.nextFloat() * Game.height, R, G, B,
+                    rand.nextFloat() * 50 + 5, rand.nextFloat() * 50 + 5, physics, controllable);
+            
+            e.invMass = 0;
+            add(e);
+        }
+        
     }
     
     @Override
